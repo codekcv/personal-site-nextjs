@@ -15,7 +15,7 @@ const ImageContainer = styled.div`
 const Index = (): JSX.Element => (
   <>
     <Head>
-      <title>Christian Villamin | My personal site.</title>
+      <title>Christian Villamin | A Personal Site</title>
       <link rel="icon" href="/favicon.ico" />
 
       <meta
