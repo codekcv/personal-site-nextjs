@@ -9,6 +9,7 @@ import { FaAngleDoubleDown } from 'react-icons/fa'
 import { InView } from 'react-intersection-observer'
 
 import {
+  animDelay,
   animDuration,
   backEndTechnologies,
   Card,
@@ -60,7 +61,7 @@ const Home = (): JSX.Element => (
         </Flex>
       </Flex>
 
-      <InView threshold={0.2}>
+      <InView>
         {({ inView, ref }) => (
           <Box
             as={motion.div}
@@ -86,7 +87,7 @@ const Home = (): JSX.Element => (
       </InView>
 
       <Box width={[1]}>
-        <InView threshold={0.2}>
+        <InView threshold={1} delay={animDelay} triggerOnce>
           {({ inView, ref }) => (
             <Text
               as={motion.h1}
@@ -94,7 +95,7 @@ const Home = (): JSX.Element => (
               textAlign="center"
               mt="6rem"
               variants={{
-                out: { opacity: 0, transform: 'translateY(-6rem)' },
+                out: { opacity: 0, transform: 'translateY(6rem)' },
                 in: { opacity: 1, transform: 'translateY(0rem)' }
               }}
               initial="out"
@@ -107,9 +108,9 @@ const Home = (): JSX.Element => (
           )}
         </InView>
 
-        <InView threshold={0.2}>
+        <InView threshold={1} delay={animDelay} triggerOnce>
           {({ inView, ref }) => (
-            <Flex justifyContent="center" mt="3.5rem" ref={ref}>
+            <Flex justifyContent="center" mt="1.5rem" ref={ref}>
               <Card
                 variants={{
                   out: { opacity: 0, transform: 'translateX(-6rem)' },
@@ -120,10 +121,12 @@ const Home = (): JSX.Element => (
                 transition={{ duration: animDuration, ease: 'easeOut' }}
               >
                 <Text as="h2" textAlign="center">
-                  Front-End Technologies:
+                  Back-End Technologies:
                 </Text>
 
-                <Flex mt="2.5rem">{frontEndTechnologies}</Flex>
+                <Flex mt="1.5rem" flexWrap="wrap" justifyContent="center">
+                  {backEndTechnologies}
+                </Flex>
               </Card>
 
               <Card
@@ -136,10 +139,12 @@ const Home = (): JSX.Element => (
                 transition={{ duration: animDuration, ease: 'easeOut' }}
               >
                 <Text as="h2" textAlign="center">
-                  Back-End Technologies:
+                  Front-End Technologies:
                 </Text>
 
-                <Flex mt="2.5rem">{backEndTechnologies}</Flex>
+                <Flex mt="1.5rem" flexWrap="wrap" justifyContent="center">
+                  {frontEndTechnologies}
+                </Flex>
               </Card>
             </Flex>
           )}
