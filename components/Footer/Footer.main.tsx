@@ -1,18 +1,24 @@
-import Box from 'components/general/Box/Box.main'
+import Flex from 'components/general/Flex/Flex.main'
 import Text from 'components/general/Text/Text.main'
 
 const Footer = (): JSX.Element => {
   const currentYear = new Date().getFullYear()
 
   return (
-    <Box width={1} mt="2rem">
-      <Text textAlign="center">
+    <Flex
+      justifyContent="center"
+      alignItems="center"
+      width={1}
+      height={64}
+      mt="2rem"
+    >
+      <Text color="#666" textAlign="center">
         © {currentYear} Christian Villamin | Built with&nbsp;
         <a href="https://nextjs.org/" target="_blank" rel="noopener noreferrer">
           Next.js
         </a>
       </Text>
-    </Box>
+    </Flex>
   )
 }
 
