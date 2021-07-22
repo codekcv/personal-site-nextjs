@@ -6,7 +6,7 @@ const Container = styled(Box)``
 
 const Header = (): JSX.Element => (
   <Container width={1} mt="2rem">
-    <Text textAlign="center">Header</Text>
+    <Text textAlign="center">&nbsp;</Text>
   </Container>
 )
 
