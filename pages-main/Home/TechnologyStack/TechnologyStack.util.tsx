@@ -5,13 +5,6 @@ import styled from 'styled-components'
 export const animDuration = 1
 export const animDelay = 350
 
-export const ImageContainer = styled.div`
-  .profile-picture {
-    border-radius: 50%;
-    border: 1px solid red;
-  }
-`
-
 export const Card = styled(motion.div)`
   margin-top: 1rem;
   margin: 0 1rem;
@@ -26,6 +19,8 @@ export const frontEndTechnologies = [
   'React',
   'Redux',
   'Apollo Client',
+  'styled-components',
+  'styled-system',
   'React Hook Form',
   'Next.js',
   'React Testing Library'

@@ -1,0 +1,84 @@
+import Box from 'components/general/Box/Box.main'
+import Flex from 'components/general/Flex/Flex.main'
+import Text from 'components/general/Text/Text.main'
+import { motion } from 'framer-motion'
+import { InView } from 'react-intersection-observer'
+
+import {
+  animDelay,
+  animDuration,
+  backEndTechnologies,
+  Card,
+  frontEndTechnologies
+} from './TechnologyStack.util'
+
+const TechnologyStack = (): JSX.Element => {
+  return (
+    <Box width={[1]}>
+      <InView threshold={1} delay={animDelay} triggerOnce>
+        {({ inView, ref }) => (
+          <Text
+            as={motion.h1}
+            fontSize="4rem"
+            textAlign="center"
+            mt="6rem"
+            variants={{
+              out: { opacity: 0, transform: 'translateY(6rem)' },
+              in: { opacity: 1, transform: 'translateY(0rem)' }
+            }}
+            initial="out"
+            animate={inView ? 'in' : 'out'}
+            transition={{ duration: animDuration, ease: 'easeOut' }}
+            ref={ref}
+          >
+            Technology Stack
+          </Text>
+        )}
+      </InView>
+
+      <InView threshold={1} delay={animDelay} triggerOnce>
+        {({ inView, ref }) => (
+          <Flex justifyContent="center" mt="1.5rem" ref={ref}>
+            <Card
+              variants={{
+                out: { opacity: 0, transform: 'translateX(-6rem)' },
+                in: { opacity: 1, transform: 'translateX(0rem)' }
+              }}
+              initial="out"
+              animate={inView ? 'in' : 'out'}
+              transition={{ duration: animDuration, ease: 'easeOut' }}
+            >
+              <Text as="h2" textAlign="center">
+                Back-End
+              </Text>
+
+              <Flex mt="1.5rem" flexWrap="wrap" justifyContent="center">
+                {backEndTechnologies}
+              </Flex>
+            </Card>
+
+            <Card
+              variants={{
+                out: { opacity: 0, transform: 'translateX(6rem)' },
+                in: { opacity: 1, transform: 'translateX(0rem)' }
+              }}
+              initial="out"
+              animate={inView ? 'in' : 'out'}
+              transition={{ duration: animDuration, ease: 'easeOut' }}
+            >
+              <Text as="h2" textAlign="center">
+                Front-End
+              </Text>
+
+              <Flex mt="1.5rem" flexWrap="wrap" justifyContent="center">
+                {frontEndTechnologies}
+              </Flex>
+            </Card>
+          </Flex>
+        )}
+      </InView>
+    </Box>
+  )
+}
+
+export default TechnologyStack
