@@ -21,6 +21,7 @@
     "@types/styled-system": "^5.1.12",
     "@typescript-eslint/eslint-plugin": "^4.28.4",
     "@typescript-eslint/parser": "^4.28.4",
+    "babel-plugin-styled-components": "^1.13.2",
     "eslint": "^7.31.0",
     "eslint-config-next": "11.0.1",
     "eslint-config-prettier": "^8.3.0",
