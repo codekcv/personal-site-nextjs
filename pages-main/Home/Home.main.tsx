@@ -121,7 +121,7 @@ const Home = (): JSX.Element => (
                 transition={{ duration: animDuration, ease: 'easeOut' }}
               >
                 <Text as="h2" textAlign="center">
-                  Back-End Technologies:
+                  Back-End
                 </Text>
 
                 <Flex mt="1.5rem" flexWrap="wrap" justifyContent="center">
@@ -139,7 +139,7 @@ const Home = (): JSX.Element => (
                 transition={{ duration: animDuration, ease: 'easeOut' }}
               >
                 <Text as="h2" textAlign="center">
-                  Front-End Technologies:
+                  Front-End
                 </Text>
 
                 <Flex mt="1.5rem" flexWrap="wrap" justifyContent="center">
