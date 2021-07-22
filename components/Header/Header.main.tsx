@@ -3,11 +3,7 @@ import Item from 'components/general/Item/Item.main'
 import Text from 'components/general/Text/Text.main'
 import styled from 'styled-components'
 
-const Container = styled(Flex)`
-  li {
-    list-style: none;
-  }
-`
+const Container = styled(Flex)``
 
 const menus = ['Home', 'Projects', 'Blogs', 'Contact'].map((menu) => (
   <Item key={menu} as="li" mx={2}>
