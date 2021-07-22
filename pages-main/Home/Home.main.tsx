@@ -56,7 +56,7 @@ const Home = (): JSX.Element => (
           </Text>
 
           <Text as="p" fontSize={24}>
-            I&apos;m a software engineer specializing at web applications.
+            I&apos;m a software engineer specializing on web technologies.
           </Text>
         </Flex>
       </Flex>
