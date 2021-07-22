@@ -35,7 +35,13 @@ const Index = (): JSX.Element => (
         />
       </ImageContainer>
 
-      <Text as="h1">Christian Villamin</Text>
+      <Text as="h1" color="#333" fontSize={64}>
+        Christian Villamin
+      </Text>
+
+      <Text as="p" fontSize={24}>
+        I&apos;m a software engineer specializing at web applications.
+      </Text>
     </Flex>
   </>
 )
