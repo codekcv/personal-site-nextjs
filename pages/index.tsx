@@ -24,7 +24,7 @@ const Index = (): JSX.Element => (
       />
     </Head>
 
-    <Flex flexDirection="column" alignItems="center">
+    <Flex flexDirection="column" alignItems="center" mt={128}>
       <ImageContainer>
         <Image
           className="profile-picture"
