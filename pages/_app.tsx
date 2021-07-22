@@ -6,6 +6,13 @@ import styled, { createGlobalStyle } from 'styled-components'
 import { compose, layout, LayoutProps, space, SpaceProps } from 'styled-system'
 
 const GlobalStyle = createGlobalStyle`
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    color: #333;
+  }
+
   html,
   body {
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
@@ -14,14 +21,6 @@ const GlobalStyle = createGlobalStyle`
 
   a {
     color: inherit;
-    text-decoration: none;
-  }
-
-  * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    color: #333;
   }
 `
 
