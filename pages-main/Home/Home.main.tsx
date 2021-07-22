@@ -50,7 +50,7 @@ const Home = (): JSX.Element => (
             />
           </ImageContainer>
 
-          <Text as="h1" color="#333" fontSize={64}>
+          <Text as="h1" fontSize={64}>
             Christian Villamin
           </Text>
 
@@ -60,26 +60,46 @@ const Home = (): JSX.Element => (
         </Flex>
       </Flex>
 
-      <Box as={motion.div} height={48}>
-        <FaAngleDoubleDown size={48} color="#333" />
-      </Box>
+      <InView threshold={0.2}>
+        {({ inView, ref }) => (
+          <Box
+            as={motion.div}
+            height={48}
+            ref={ref}
+            variants={{
+              out: { opacity: 0 },
+              in: {
+                opacity: 1,
+                transform: [
+                  'translateY(-1rem)',
+                  'translateY(0rem)',
+                  'translateY(-1rem)'
+                ]
+              }
+            }}
+            animate={inView ? 'in' : 'out'}
+            transition={{ repeat: Infinity, duration: 3 }}
+          >
+            <FaAngleDoubleDown size={48} />
+          </Box>
+        )}
+      </InView>
 
       <Box width={[1]}>
         <InView threshold={0.2}>
           {({ inView, ref }) => (
             <Text
               as={motion.h1}
-              color="#333"
               fontSize="4rem"
               textAlign="center"
               mt="6rem"
               variants={{
-                out: { opacity: 0 },
-                in: { opacity: 1 }
+                out: { opacity: 0, transform: 'translateY(-6rem)' },
+                in: { opacity: 1, transform: 'translateY(0rem)' }
               }}
               initial="out"
               animate={inView ? 'in' : 'out'}
-              transition={{ duration: animDuration }}
+              transition={{ duration: animDuration, ease: 'easeOut' }}
               ref={ref}
             >
               Technology Stack
@@ -92,28 +112,34 @@ const Home = (): JSX.Element => (
             <Flex justifyContent="center" mt="3.5rem" ref={ref}>
               <Card
                 variants={{
-                  out: { opacity: 0, transform: 'translateX(-2rem)' },
+                  out: { opacity: 0, transform: 'translateX(-6rem)' },
                   in: { opacity: 1, transform: 'translateX(0rem)' }
                 }}
                 initial="out"
                 animate={inView ? 'in' : 'out'}
-                transition={{ duration: animDuration }}
+                transition={{ duration: animDuration, ease: 'easeOut' }}
               >
-                <Text>Front-End Technologies:</Text>
-                <Flex mt="0.35rem">{frontEndTechnologies}</Flex>
+                <Text as="h2" textAlign="center">
+                  Front-End Technologies:
+                </Text>
+
+                <Flex mt="2.5rem">{frontEndTechnologies}</Flex>
               </Card>
 
               <Card
                 variants={{
-                  out: { opacity: 0, transform: 'translateX(2rem)' },
+                  out: { opacity: 0, transform: 'translateX(6rem)' },
                   in: { opacity: 1, transform: 'translateX(0rem)' }
                 }}
                 initial="out"
                 animate={inView ? 'in' : 'out'}
-                transition={{ duration: animDuration }}
+                transition={{ duration: animDuration, ease: 'easeOut' }}
               >
-                <Text>Back-End Technologies:</Text>
-                <Flex mt="0.35rem">{backEndTechnologies}</Flex>
+                <Text as="h2" textAlign="center">
+                  Back-End Technologies:
+                </Text>
+
+                <Flex mt="2.5rem">{backEndTechnologies}</Flex>
               </Card>
             </Flex>
           )}

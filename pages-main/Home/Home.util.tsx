@@ -15,9 +15,10 @@ export const Card = styled(motion.div)`
   margin-top: 1rem;
   margin: 0 1rem;
   padding: 1rem;
-  border: 1px solid silver;
+  /* border: 1px solid silver; */
   border-radius: 12px;
   width: 50%;
+  box-shadow: 0 0 3rem -1.5rem #ccc;
 `
 
 export const frontEndTechnologies = ['React', 'Redux', 'Apollo Client'].map(
