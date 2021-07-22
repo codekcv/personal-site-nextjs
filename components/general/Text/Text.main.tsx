@@ -1,10 +1,16 @@
 import styled from 'styled-components'
-import { typography, TypographyProps } from 'styled-system'
+import {
+  color,
+  ColorProps,
+  compose,
+  typography,
+  TypographyProps
+} from 'styled-system'
 
-type Props = TypographyProps
+type Props = TypographyProps & ColorProps
 
 const Text = styled.p<Props>`
-  ${typography}
+  ${compose(typography, color)}
 `
 
 export default Text
