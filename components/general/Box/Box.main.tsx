@@ -7,16 +7,23 @@ import {
   FlexboxProps,
   layout,
   LayoutProps,
+  position,
+  PositionProps,
   shadow,
   ShadowProps,
   space,
   SpaceProps
 } from 'styled-system'
 
-type Props = LayoutProps & SpaceProps & FlexboxProps & BorderProps & ShadowProps
+type Props = LayoutProps &
+  SpaceProps &
+  FlexboxProps &
+  BorderProps &
+  ShadowProps &
+  PositionProps
 
 const Box = styled.div<Props>`
-  ${compose(layout, space, flexbox, border, shadow)}
+  ${compose(position, layout, space, flexbox, border, shadow)}
 `
 
 export default Box
