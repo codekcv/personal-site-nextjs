@@ -13,6 +13,8 @@ import { facts } from './About.util'
 const About = (): JSX.Element => {
   const posRef = useRef<HTMLDivElement>(null)
   const cardRef = useRef<HTMLDivElement>(null)
+  const titleRef = useRef<HTMLDivElement>(null)
+  const [titleY, setTitleY] = useState(0)
   const [isOpen, setIsOpen] = useState(false)
   const [height, setHeight] = useState(0)
   const { ref, inView } = useInView({
@@ -27,12 +29,11 @@ const About = (): JSX.Element => {
     }
   }, [])
 
-  const posX = posRef?.current?.getBoundingClientRect().x ?? 0
-  const posY = posRef?.current?.getBoundingClientRect().y ?? 0
-  const transform = `translate(calc(-${posX}px + 10vw), ${posY * -1}px)`
-
   useEffect(() => {
     if (isOpen && window) {
+      const titlePosY = titleRef?.current?.getBoundingClientRect().y ?? 0
+      setTitleY(titlePosY - (window.innerHeight / 2 - 60))
+
       document.body.style.height = '100%'
       document.body.style.overflowY = 'hidden'
     } else {
@@ -40,6 +41,9 @@ const About = (): JSX.Element => {
       document.body.style.overflowY = 'initial'
     }
   }, [isOpen])
+
+  const posY = (posRef?.current?.getBoundingClientRect().y ?? 0) + 32
+  const transform = `translate(-128px, calc(${posY * -1}px))`
 
   return (
     <Box mt="10vh" ref={ref}>
@@ -50,7 +54,9 @@ const About = (): JSX.Element => {
               variants={{
                 close: {},
                 open: {
-                  transform: `translateY(${posY * -1}px)`
+                  transform: `translate(-560px, ${
+                    titleY * -1
+                  }px) rotate(-90deg)`
                 }
               }}
               transition={{ duration: 0.4 }}
@@ -58,6 +64,7 @@ const About = (): JSX.Element => {
             >
               <Text
                 as={motion.h1}
+                display="inline"
                 fontSize="4rem"
                 textAlign="center"
                 mt="6rem"
@@ -72,6 +79,7 @@ const About = (): JSX.Element => {
                 initial="out"
                 animate={inView ? 'in' : 'out'}
                 transition={{ duration: animDuration, ease: 'easeOut' }}
+                ref={titleRef}
               >
                 About
               </Text>
@@ -109,8 +117,8 @@ const About = (): JSX.Element => {
                   close: {},
                   open: {
                     transform,
-                    width: '80vw',
-                    height: 'calc(100vh - 85px)'
+                    width: 1024,
+                    height: '100vh'
                   }
                 }}
                 animate={isOpen ? 'open' : 'close'}
