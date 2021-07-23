@@ -12,75 +12,82 @@ import { backEndTechnologies, frontEndTechnologies } from './Stack.util'
 const Stack = (): JSX.Element => {
   return (
     <Box width={[1]} mt="10vh">
-      <InView threshold={0.5} delay={animDelay} triggerOnce={triggerOnce}>
-        {({ inView, ref }) => (
-          <Bobble>
-            <Text
-              as={motion.h1}
-              fontSize="4rem"
-              textAlign="center"
-              mt="6rem"
-              textShadow="0 0.35rem 0px rgba(0,0,0,0.1)"
-              variants={{
-                out: { opacity: 0, transform: 'scale(1.4)' },
-                in: { opacity: 1, transform: 'scale(1)' }
-              }}
-              initial="out"
-              animate={inView ? 'in' : 'out'}
-              transition={{ duration: animDuration, ease: 'easeOut' }}
-              ref={ref}
-            >
-              Technology Stack
-            </Text>
-          </Bobble>
-        )}
-      </InView>
-
-      <InView threshold={0.35} delay={animDelay} triggerOnce={triggerOnce}>
-        {({ inView, ref }) => (
-          <Flex justifyContent="center" mt="1.5rem" ref={ref}>
-            <Card
-              width="50%"
-              mr="2rem"
-              variants={{
-                out: { opacity: 0, transform: 'translateX(-6rem)' },
-                in: { opacity: 1, transform: 'translateX(0rem)' }
-              }}
-              initial="out"
-              animate={inView ? 'in' : 'out'}
-              transition={{ duration: animDuration, ease: 'easeOut' }}
-            >
-              <Text as="h2" textAlign="center">
-                Back-End
+      <div style={{ position: 'relative', zIndex: 1 }}>
+        <InView threshold={1} delay={animDelay} triggerOnce={triggerOnce}>
+          {({ inView, ref }) => (
+            <Bobble>
+              <Text
+                as={motion.h1}
+                fontSize="4rem"
+                textAlign="center"
+                mt="6rem"
+                textShadow="0 0.35rem 0px rgba(0,0,0,0.1)"
+                variants={{
+                  out: {
+                    opacity: 0,
+                    transform: 'scale(1.5)  translateY(6rem)'
+                  },
+                  in: { opacity: 1, transform: 'scale(1)  translateY(0rem)' }
+                }}
+                initial="out"
+                animate={inView ? 'in' : 'out'}
+                transition={{ duration: animDuration, ease: 'easeOut' }}
+                ref={ref}
+              >
+                Technology Stack
               </Text>
+            </Bobble>
+          )}
+        </InView>
+      </div>
 
-              <Flex mt="1.5rem" flexWrap="wrap" justifyContent="center">
-                {backEndTechnologies}
-              </Flex>
-            </Card>
+      <div style={{ position: 'relative', zIndex: 0 }}>
+        <InView threshold={0.35} delay={animDelay} triggerOnce={triggerOnce}>
+          {({ inView, ref }) => (
+            <Flex justifyContent="center" mt="-1.5rem" ref={ref}>
+              <Card
+                width="50%"
+                mr="2rem"
+                variants={{
+                  out: { opacity: 0, transform: 'translateX(-6rem)' },
+                  in: { opacity: 1, transform: 'translateX(0rem)' }
+                }}
+                initial="out"
+                animate={inView ? 'in' : 'out'}
+                transition={{ duration: animDuration, ease: 'easeOut' }}
+              >
+                <Text as="h2" textAlign="center">
+                  Back-End
+                </Text>
 
-            <Card
-              width="50%"
-              ml="2rem"
-              variants={{
-                out: { opacity: 0, transform: 'translateX(6rem)' },
-                in: { opacity: 1, transform: 'translateX(0rem)' }
-              }}
-              initial="out"
-              animate={inView ? 'in' : 'out'}
-              transition={{ duration: animDuration, ease: 'easeOut' }}
-            >
-              <Text as="h2" textAlign="center">
-                Front-End
-              </Text>
+                <Flex mt="1.5rem" flexWrap="wrap" justifyContent="center">
+                  {backEndTechnologies}
+                </Flex>
+              </Card>
 
-              <Flex mt="1.5rem" flexWrap="wrap" justifyContent="center">
-                {frontEndTechnologies}
-              </Flex>
-            </Card>
-          </Flex>
-        )}
-      </InView>
+              <Card
+                width="50%"
+                ml="2rem"
+                variants={{
+                  out: { opacity: 0, transform: 'translateX(6rem)' },
+                  in: { opacity: 1, transform: 'translateX(0rem)' }
+                }}
+                initial="out"
+                animate={inView ? 'in' : 'out'}
+                transition={{ duration: animDuration, ease: 'easeOut' }}
+              >
+                <Text as="h2" textAlign="center">
+                  Front-End
+                </Text>
+
+                <Flex mt="1.5rem" flexWrap="wrap" justifyContent="center">
+                  {frontEndTechnologies}
+                </Flex>
+              </Card>
+            </Flex>
+          )}
+        </InView>
+      </div>
     </Box>
   )
 }
