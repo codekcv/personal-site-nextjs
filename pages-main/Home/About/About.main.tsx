@@ -9,12 +9,24 @@ import { animDelay, animDuration } from '../Home.util'
 
 const facts = [
   'My name is Christian Villamin; I live in Manila, Philippines.',
-  "I'm currently working at NextPay as a senior front-end engineer.",
+  <>
+    I&apos;m currently working at&nbsp;
+    <a href="https://nextpay.world/" target="_blank" rel="noopener noreferrer">
+      NextPay
+    </a>{' '}
+    as a senior front-end engineer.
+  </>,
+  <>
+    I&apos;m a core member of&nbsp;
+    <a href="https://reactjs.org.ph/" target="_blank" rel="noopener noreferrer">
+      ReactJS Philippines.
+    </a>
+  </>,
   "I'm a self-taught programmer since age 10.",
-  'I love React, JavaScript, and open-source.',
-  'I love mentoring aspiring developers.'
-].map((item) => (
-  <Item key={item} ml="2rem" style={{ listStyle: 'initial' }}>
+  'I love learning, JavaScript, and open-source.',
+  'I love mentoring aspiring web developers.'
+].map((item, idx) => (
+  <Item key={idx} ml="2rem" style={{ listStyle: 'initial' }}>
     {item}
   </Item>
 ))
