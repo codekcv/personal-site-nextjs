@@ -5,13 +5,13 @@ import Text from 'components/general/Text/Text.main'
 import { motion } from 'framer-motion'
 import { InView } from 'react-intersection-observer'
 
-import { animDelay, animDuration } from '../Home.util'
+import { animDelay, animDuration, triggerOnce } from '../Home.util'
 import { backEndTechnologies, frontEndTechnologies } from './Stack.util'
 
 const Stack = (): JSX.Element => {
   return (
     <Box width={[1]} mt="10vh">
-      <InView threshold={0.5} delay={animDelay} triggerOnce>
+      <InView threshold={0.5} delay={animDelay} triggerOnce={triggerOnce}>
         {({ inView, ref }) => (
           <Text
             as={motion.h1}
@@ -33,7 +33,7 @@ const Stack = (): JSX.Element => {
         )}
       </InView>
 
-      <InView threshold={0.35} delay={animDelay} triggerOnce>
+      <InView threshold={0.35} delay={animDelay} triggerOnce={triggerOnce}>
         {({ inView, ref }) => (
           <Flex justifyContent="center" mt="3rem" ref={ref}>
             <Card

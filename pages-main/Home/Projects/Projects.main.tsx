@@ -3,12 +3,12 @@ import Text from 'components/general/Text/Text.main'
 import { motion } from 'framer-motion'
 import { InView } from 'react-intersection-observer'
 
-import { animDelay, animDuration } from '../Home.util'
+import { animDelay, animDuration, triggerOnce } from '../Home.util'
 
 const Projects = (): JSX.Element => {
   return (
     <Box mt="10vh">
-      <InView threshold={0.5} delay={animDelay} triggerOnce>
+      <InView threshold={0.5} delay={animDelay} triggerOnce={triggerOnce}>
         {({ inView, ref }) => (
           <Text
             as={motion.h1}
