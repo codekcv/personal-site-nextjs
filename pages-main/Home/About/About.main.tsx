@@ -4,7 +4,8 @@ import Box from 'components/general/Box/Box.main'
 import Item from 'components/general/Item/Item.main'
 import Text from 'components/general/Text/Text.main'
 import { motion } from 'framer-motion'
-import { InView } from 'react-intersection-observer'
+import { useLayoutEffect, useRef, useState } from 'react'
+import { useInView } from 'react-intersection-observer'
 
 import { animDelay, animDuration, triggerOnce } from '../Home.util'
 
@@ -33,48 +34,93 @@ const facts = [
 ))
 
 const About = (): JSX.Element => {
-  return (
-    <Box mt="10vh">
-      <InView threshold={0.5} delay={animDelay} triggerOnce={triggerOnce}>
-        {({ inView, ref }) => (
-          <>
-            <div style={{ position: 'relative', zIndex: 1 }}>
-              <Bobble>
-                <Text
-                  as={motion.h1}
-                  fontSize="4rem"
-                  textAlign="center"
-                  mt="6rem"
-                  textShadow="0 0.35rem 0px rgba(0,0,0,0.1)"
-                  variants={{
-                    out: {
-                      opacity: 0,
-                      transform: 'scale(1.5) translateY(6rem)'
-                    },
-                    in: { opacity: 1, transform: 'scale(1) translateY(0rem)' }
-                  }}
-                  initial="out"
-                  animate={inView ? 'in' : 'out'}
-                  transition={{ duration: animDuration, ease: 'easeOut' }}
-                  ref={ref}
-                >
-                  About
-                </Text>
-              </Bobble>
-            </div>
+  const posRef = useRef<HTMLDivElement>(null)
+  const cardRef = useRef<HTMLDivElement>(null)
+  const [isOpen, setIsOpen] = useState(false)
+  const [height, setHeight] = useState(0)
+  const { ref, inView } = useInView({
+    threshold: 0.5,
+    delay: animDelay,
+    triggerOnce
+  })
 
-            <div style={{ position: 'relative', zIndex: 0 }}>
+  useLayoutEffect(() => {
+    if (posRef?.current) {
+      console.log(posRef.current.getBoundingClientRect().x)
+    }
+
+    if (cardRef?.current) {
+      setHeight(cardRef?.current?.getBoundingClientRect().height)
+    }
+  }, [])
+
+  return (
+    <Box mt="10vh" ref={ref}>
+      <div ref={posRef}>
+        <div style={{ position: 'relative', zIndex: 1 }}>
+          <Bobble>
+            <Text
+              as={motion.h1}
+              fontSize="4rem"
+              textAlign="center"
+              mt="6rem"
+              textShadow="0 0.35rem 0px rgba(0,0,0,0.1)"
+              variants={{
+                out: {
+                  opacity: 0,
+                  transform: 'scale(1.5) translateY(6rem)'
+                },
+                in: { opacity: 1, transform: 'scale(1) translateY(0rem)' }
+              }}
+              initial="out"
+              animate={inView ? 'in' : 'out'}
+              transition={{ duration: animDuration, ease: 'easeOut' }}
+            >
+              About
+            </Text>
+          </Bobble>
+        </div>
+
+        <div style={{ position: 'relative', zIndex: 0 }}>
+          <motion.div
+            variants={{
+              out: {
+                opacity: 0,
+                transform: 'translateY(-3rem)',
+                transition: { duration: animDuration, ease: 'easeOut' }
+              },
+              in: {
+                opacity: 1,
+                transform: 'translateY(0rem)',
+                transition: { duration: animDuration, ease: 'easeOut' }
+              }
+            }}
+            initial="out"
+            animate={inView ? 'in' : 'out'}
+          >
+            <motion.div
+              whileHover={{
+                transform: `translateY(${isOpen ? '0' : '-0.5'}rem)`
+              }}
+              style={{ height }}
+            >
               <Card
                 width="100%"
                 mt="-1.5rem"
-                ref={ref}
                 variants={{
-                  out: { opacity: 0, transform: 'translateY(-3rem)' },
-                  in: { opacity: 1, transform: 'translateY(0rem)' }
+                  close: {},
+                  open: {
+                    transform: `translateX(calc(-${
+                      posRef?.current?.getBoundingClientRect().x ?? 0
+                    }px + 10vw))`,
+                    width: '80vw',
+                    height: '80vh'
+                  }
                 }}
-                initial="out"
-                animate={inView ? 'in' : 'out'}
-                transition={{ duration: animDuration, ease: 'easeOut' }}
+                animate={isOpen ? 'open' : 'close'}
+                onClick={() => setIsOpen(!isOpen)}
+                style={{ position: 'absolute' }}
+                ref={cardRef}
               >
                 <Item as="ul">{facts}</Item>
 
@@ -84,10 +130,10 @@ const About = (): JSX.Element => {
                   and exercises, and take care of my lovely cats.
                 </Text>
               </Card>
-            </div>
-          </>
-        )}
-      </InView>
+            </motion.div>
+          </motion.div>
+        </div>
+      </div>
     </Box>
   )
 }
