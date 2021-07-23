@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { compose, layout, LayoutProps, space, SpaceProps } from 'styled-system'
 
 const Card = styled(motion.div)<LayoutProps & SpaceProps>`
+  background-color: white;
   padding: 2rem;
   border: 1px dotted rgba(0, 0, 0, 0.1);
   border-radius: 12px;
