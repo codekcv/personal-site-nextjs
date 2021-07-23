@@ -11,6 +11,11 @@ const Bobble: React.FC = ({ children }) => (
         bobbingRange.x.duration /
         (Math.random() * (maxVary - minVary) + minVary)
     }}
+    style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center'
+    }}
   >
     <motion.div
       animate={{ transform: bobbingRange.y.transform }}
