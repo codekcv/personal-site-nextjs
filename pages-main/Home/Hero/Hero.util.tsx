@@ -8,6 +8,7 @@ import {
   AiOutlineTwitter
 } from 'react-icons/ai'
 import { FaDev, FaFreeCodeCamp } from 'react-icons/fa'
+import { IoIosMail } from 'react-icons/io'
 import styled from 'styled-components'
 
 export const ImageContainer = styled.div`
@@ -54,6 +55,11 @@ export const contacts = [
     name: 'LinkedIn',
     icon: <AiFillLinkedin size={48} />,
     link: 'https://www.linkedin.com/in/codekcv/'
+  },
+  {
+    name: 'Email',
+    icon: <IoIosMail size={48} />,
+    link: 'mailto:ChristianVillamin31@gmail.com'
   }
 ].map((item) => (
   <Item
