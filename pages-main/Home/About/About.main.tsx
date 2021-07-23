@@ -8,12 +8,16 @@ import { InView } from 'react-intersection-observer'
 import { animDelay, animDuration } from '../Home.util'
 
 const facts = [
+  'My name is Christian Villamin; I live in Manila, Philippines.',
   "I'm currently working at NextPay as a senior front-end engineer.",
-  "I'm a self-taught programmer.",
-  'I love open-source and JavaScript.',
-  'I love React.',
+  "I'm a self-taught programmer since age 10.",
+  'I love React, JavaScript, and open-source.',
   'I love mentoring aspiring developers.'
-].map((item) => <Item key={item}>{item}</Item>)
+].map((item) => (
+  <Item key={item} ml="2rem" style={{ listStyle: 'initial' }}>
+    {item}
+  </Item>
+))
 
 const About = (): JSX.Element => {
   return (
