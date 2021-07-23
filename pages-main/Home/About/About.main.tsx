@@ -1,14 +1,11 @@
+import Card from 'components/Card'
 import Box from 'components/general/Box/Box.main'
 import Item from 'components/general/Item/Item.main'
 import Text from 'components/general/Text/Text.main'
 import { motion } from 'framer-motion'
 import { InView } from 'react-intersection-observer'
 
-import {
-  animDelay,
-  animDuration,
-  Card
-} from '../TechnologyStack/TechnologyStack.util'
+import { animDelay, animDuration } from '../Home.util'
 
 const facts = [
   "I'm currently working at NextPay as a senior front-end engineer.",
@@ -47,7 +44,6 @@ const About = (): JSX.Element => {
           <Card
             width="100%"
             mt="3rem"
-            p="2rem"
             ref={ref}
             variants={{
               out: { opacity: 0, transform: 'translateY(-3rem)' },

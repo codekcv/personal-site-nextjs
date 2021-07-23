@@ -1,14 +1,13 @@
+import Card from 'components/Card'
 import Box from 'components/general/Box/Box.main'
 import Flex from 'components/general/Flex/Flex.main'
 import Text from 'components/general/Text/Text.main'
 import { motion } from 'framer-motion'
 import { InView } from 'react-intersection-observer'
 
+import { animDelay, animDuration } from '../Home.util'
 import {
-  animDelay,
-  animDuration,
   backEndTechnologies,
-  Card,
   frontEndTechnologies
 } from './TechnologyStack.util'
 
@@ -41,6 +40,7 @@ const TechnologyStack = (): JSX.Element => {
           <Flex justifyContent="center" mt="3rem" ref={ref}>
             <Card
               width="50%"
+              mr="2rem"
               variants={{
                 out: { opacity: 0, transform: 'translateX(-6rem)' },
                 in: { opacity: 1, transform: 'translateX(0rem)' }
@@ -60,6 +60,7 @@ const TechnologyStack = (): JSX.Element => {
 
             <Card
               width="50%"
+              ml="2rem"
               variants={{
                 out: { opacity: 0, transform: 'translateX(6rem)' },
                 in: { opacity: 1, transform: 'translateX(0rem)' }

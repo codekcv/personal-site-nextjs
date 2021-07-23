@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react'
 import { FaAngleDoubleDown } from 'react-icons/fa'
 import { InView } from 'react-intersection-observer'
 
-import { animDuration } from '../TechnologyStack/TechnologyStack.util'
+import { animDuration } from '../Home.util'
 import { ImageContainer } from './Hero.util'
 
 const Hero = (): JSX.Element => {
