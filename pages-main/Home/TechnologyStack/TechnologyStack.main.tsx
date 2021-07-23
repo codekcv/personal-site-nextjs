@@ -14,7 +14,7 @@ import {
 
 const TechnologyStack = (): JSX.Element => {
   return (
-    <Box width={[1]}>
+    <Box width={[1]} mt="10vh">
       <InView threshold={0.5} delay={animDelay} triggerOnce>
         {({ inView, ref }) => (
           <Text
@@ -38,8 +38,9 @@ const TechnologyStack = (): JSX.Element => {
 
       <InView threshold={0.35} delay={animDelay} triggerOnce>
         {({ inView, ref }) => (
-          <Flex justifyContent="center" mt="1.5rem" ref={ref}>
+          <Flex justifyContent="center" mt="3rem" ref={ref}>
             <Card
+              width="50%"
               variants={{
                 out: { opacity: 0, transform: 'translateX(-6rem)' },
                 in: { opacity: 1, transform: 'translateX(0rem)' }
@@ -58,6 +59,7 @@ const TechnologyStack = (): JSX.Element => {
             </Card>
 
             <Card
+              width="50%"
               variants={{
                 out: { opacity: 0, transform: 'translateX(6rem)' },
                 in: { opacity: 1, transform: 'translateX(0rem)' }
