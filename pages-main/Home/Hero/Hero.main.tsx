@@ -1,3 +1,4 @@
+import Bobble from 'components/Bobble'
 import Box from 'components/general/Box/Box.main'
 import Flex from 'components/general/Flex/Flex.main'
 import Text from 'components/general/Text/Text.main'
@@ -50,13 +51,15 @@ const Hero = (): JSX.Element => {
             />
           </ImageContainer>
 
-          <Text
-            as="h1"
-            fontSize={64}
-            textShadow="0 0.35rem 0px rgba(0,0,0,0.1)"
-          >
-            Christian Villamin
-          </Text>
+          <Bobble>
+            <Text
+              as="h1"
+              fontSize={64}
+              textShadow="0 0.35rem 0px rgba(0,0,0,0.1)"
+            >
+              Christian Villamin
+            </Text>
+          </Bobble>
 
           <Text as="p" fontSize={24}>
             I&apos;m a software engineer specializing on web technologies.

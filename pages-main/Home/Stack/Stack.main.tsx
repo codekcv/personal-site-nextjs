@@ -1,3 +1,4 @@
+import Bobble from 'components/Bobble'
 import Card from 'components/Card'
 import Box from 'components/general/Box/Box.main'
 import Flex from 'components/general/Flex/Flex.main'
@@ -13,29 +14,31 @@ const Stack = (): JSX.Element => {
     <Box width={[1]} mt="10vh">
       <InView threshold={0.5} delay={animDelay} triggerOnce={triggerOnce}>
         {({ inView, ref }) => (
-          <Text
-            as={motion.h1}
-            fontSize="4rem"
-            textAlign="center"
-            mt="6rem"
-            textShadow="0 0.35rem 0px rgba(0,0,0,0.1)"
-            variants={{
-              out: { opacity: 0, transform: 'scale(1.4)' },
-              in: { opacity: 1, transform: 'scale(1)' }
-            }}
-            initial="out"
-            animate={inView ? 'in' : 'out'}
-            transition={{ duration: animDuration, ease: 'easeOut' }}
-            ref={ref}
-          >
-            Technology Stack
-          </Text>
+          <Bobble>
+            <Text
+              as={motion.h1}
+              fontSize="4rem"
+              textAlign="center"
+              mt="6rem"
+              textShadow="0 0.35rem 0px rgba(0,0,0,0.1)"
+              variants={{
+                out: { opacity: 0, transform: 'scale(1.4)' },
+                in: { opacity: 1, transform: 'scale(1)' }
+              }}
+              initial="out"
+              animate={inView ? 'in' : 'out'}
+              transition={{ duration: animDuration, ease: 'easeOut' }}
+              ref={ref}
+            >
+              Technology Stack
+            </Text>
+          </Bobble>
         )}
       </InView>
 
       <InView threshold={0.35} delay={animDelay} triggerOnce={triggerOnce}>
         {({ inView, ref }) => (
-          <Flex justifyContent="center" mt="3rem" ref={ref}>
+          <Flex justifyContent="center" mt="1.5rem" ref={ref}>
             <Card
               width="50%"
               mr="2rem"

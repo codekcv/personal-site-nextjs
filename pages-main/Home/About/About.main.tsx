@@ -1,3 +1,4 @@
+import Bobble from 'components/Bobble'
 import Card from 'components/Card'
 import Box from 'components/general/Box/Box.main'
 import Item from 'components/general/Item/Item.main'
@@ -36,23 +37,25 @@ const About = (): JSX.Element => {
     <Box mt="10vh">
       <InView threshold={0.5} delay={animDelay} triggerOnce={triggerOnce}>
         {({ inView, ref }) => (
-          <Text
-            as={motion.h1}
-            fontSize="4rem"
-            textAlign="center"
-            mt="6rem"
-            textShadow="0 0.35rem 0px rgba(0,0,0,0.1)"
-            variants={{
-              out: { opacity: 0, transform: 'scale(1.4)' },
-              in: { opacity: 1, transform: 'scale(1)' }
-            }}
-            initial="out"
-            animate={inView ? 'in' : 'out'}
-            transition={{ duration: animDuration, ease: 'easeOut' }}
-            ref={ref}
-          >
-            About
-          </Text>
+          <Bobble>
+            <Text
+              as={motion.h1}
+              fontSize="4rem"
+              textAlign="center"
+              mt="6rem"
+              textShadow="0 0.35rem 0px rgba(0,0,0,0.1)"
+              variants={{
+                out: { opacity: 0, transform: 'scale(1.4)' },
+                in: { opacity: 1, transform: 'scale(1)' }
+              }}
+              initial="out"
+              animate={inView ? 'in' : 'out'}
+              transition={{ duration: animDuration, ease: 'easeOut' }}
+              ref={ref}
+            >
+              About
+            </Text>
+          </Bobble>
         )}
       </InView>
 
@@ -60,7 +63,7 @@ const About = (): JSX.Element => {
         {({ inView, ref }) => (
           <Card
             width="100%"
-            mt="3rem"
+            mt="1.5rem"
             ref={ref}
             variants={{
               out: { opacity: 0, transform: 'translateY(-3rem)' },
