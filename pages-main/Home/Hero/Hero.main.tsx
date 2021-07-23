@@ -9,7 +9,7 @@ import { FaAngleDoubleDown } from 'react-icons/fa'
 import { InView } from 'react-intersection-observer'
 
 import { animDuration } from '../Home.util'
-import { ImageContainer } from './Hero.util'
+import { contacts, ImageContainer } from './Hero.util'
 
 const Hero = (): JSX.Element => {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -61,6 +61,8 @@ const Hero = (): JSX.Element => {
           <Text as="p" fontSize={24}>
             I&apos;m a software engineer specializing on web technologies.
           </Text>
+
+          <Flex as="ul">{contacts}</Flex>
         </Flex>
       </Flex>
 
