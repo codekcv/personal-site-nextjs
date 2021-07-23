@@ -35,61 +35,59 @@ const facts = [
 const About = (): JSX.Element => {
   return (
     <Box mt="10vh">
-      <div style={{ position: 'relative', zIndex: 1 }}>
-        <InView threshold={0.5} delay={animDelay} triggerOnce={triggerOnce}>
-          {({ inView, ref }) => (
-            <Bobble>
-              <Text
-                as={motion.h1}
-                fontSize="4rem"
-                textAlign="center"
-                mt="6rem"
-                textShadow="0 0.35rem 0px rgba(0,0,0,0.1)"
+      <InView threshold={0.5} delay={animDelay} triggerOnce={triggerOnce}>
+        {({ inView, ref }) => (
+          <>
+            <div style={{ position: 'relative', zIndex: 1 }}>
+              <Bobble>
+                <Text
+                  as={motion.h1}
+                  fontSize="4rem"
+                  textAlign="center"
+                  mt="6rem"
+                  textShadow="0 0.35rem 0px rgba(0,0,0,0.1)"
+                  variants={{
+                    out: {
+                      opacity: 0,
+                      transform: 'scale(1.5) translateY(6rem)'
+                    },
+                    in: { opacity: 1, transform: 'scale(1) translateY(0rem)' }
+                  }}
+                  initial="out"
+                  animate={inView ? 'in' : 'out'}
+                  transition={{ duration: animDuration, ease: 'easeOut' }}
+                  ref={ref}
+                >
+                  About
+                </Text>
+              </Bobble>
+            </div>
+
+            <div style={{ position: 'relative', zIndex: 0 }}>
+              <Card
+                width="100%"
+                mt="-1.5rem"
+                ref={ref}
                 variants={{
-                  out: {
-                    opacity: 0,
-                    transform: 'scale(1.5) translateY(6rem)'
-                  },
-                  in: { opacity: 1, transform: 'scale(1) translateY(0rem)' }
+                  out: { opacity: 0, transform: 'translateY(-3rem)' },
+                  in: { opacity: 1, transform: 'translateY(0rem)' }
                 }}
                 initial="out"
                 animate={inView ? 'in' : 'out'}
                 transition={{ duration: animDuration, ease: 'easeOut' }}
-                ref={ref}
               >
-                About
-              </Text>
-            </Bobble>
-          )}
-        </InView>
-      </div>
+                <Item as="ul">{facts}</Item>
 
-      <div style={{ position: 'relative', zIndex: 0 }}>
-        <InView threshold={0.5} delay={animDelay} triggerOnce={triggerOnce}>
-          {({ inView, ref }) => (
-            <Card
-              width="100%"
-              mt="-1.5rem"
-              ref={ref}
-              variants={{
-                out: { opacity: 0, transform: 'translateY(-3rem)' },
-                in: { opacity: 1, transform: 'translateY(0rem)' }
-              }}
-              initial="out"
-              animate={inView ? 'in' : 'out'}
-              transition={{ duration: animDuration, ease: 'easeOut' }}
-            >
-              <Item as="ul">{facts}</Item>
-
-              <Text mt="2rem">
-                Outside of the technology world in my free time, I play
-                classical piano, read light fantasy novels, do some stretching
-                and exercises, and take care of my lovely cats.
-              </Text>
-            </Card>
-          )}
-        </InView>
-      </div>
+                <Text mt="2rem">
+                  Outside of the technology world in my free time, I play
+                  classical piano, read light fantasy novels, do some stretching
+                  and exercises, and take care of my lovely cats.
+                </Text>
+              </Card>
+            </div>
+          </>
+        )}
+      </InView>
     </Box>
   )
 }
