@@ -15,7 +15,7 @@ import {
 const TechnologyStack = (): JSX.Element => {
   return (
     <Box width={[1]}>
-      <InView threshold={1} delay={animDelay} triggerOnce>
+      <InView threshold={0.5} delay={animDelay} triggerOnce>
         {({ inView, ref }) => (
           <Text
             as={motion.h1}
@@ -23,8 +23,8 @@ const TechnologyStack = (): JSX.Element => {
             textAlign="center"
             mt="6rem"
             variants={{
-              out: { opacity: 0, transform: 'translateY(6rem)' },
-              in: { opacity: 1, transform: 'translateY(0rem)' }
+              out: { opacity: 0, transform: 'scale(1.4)' },
+              in: { opacity: 1, transform: 'scale(1)' }
             }}
             initial="out"
             animate={inView ? 'in' : 'out'}
@@ -36,7 +36,7 @@ const TechnologyStack = (): JSX.Element => {
         )}
       </InView>
 
-      <InView threshold={1} delay={animDelay} triggerOnce>
+      <InView threshold={0.35} delay={animDelay} triggerOnce>
         {({ inView, ref }) => (
           <Flex justifyContent="center" mt="1.5rem" ref={ref}>
             <Card
