@@ -10,7 +10,7 @@ const Footer = (): JSX.Element => {
       alignItems="center"
       width={1}
       height={64}
-      mt="2rem"
+      mt="25vh"
     >
       <Text color="#666" textAlign="center">
         © {currentYear} Christian Villamin | Built with&nbsp;
