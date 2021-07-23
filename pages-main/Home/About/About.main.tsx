@@ -44,7 +44,7 @@ const About = (): JSX.Element => {
   return (
     <Box mt="10vh" ref={ref}>
       <div ref={posRef}>
-        <div style={{ position: 'relative', zIndex: 1 }}>
+        <div style={{ position: 'relative', zIndex: isOpen ? 101 : 1 }}>
           <Bobble>
             <motion.div
               variants={{
@@ -79,7 +79,7 @@ const About = (): JSX.Element => {
           </Bobble>
         </div>
 
-        <div style={{ position: 'relative', zIndex: 0 }}>
+        <div style={{ position: 'relative', zIndex: isOpen ? 100 : 0, height }}>
           <motion.div
             variants={{
               out: {
@@ -100,9 +100,9 @@ const About = (): JSX.Element => {
               whileHover={{
                 transform: `translateY(${isOpen ? '0' : '-0.5'}rem)`
               }}
-              style={{ height, zIndex: isOpen ? 10 : 0 }}
             >
               <Card
+                position="absolute"
                 width="100%"
                 mt="-1.5rem"
                 variants={{
@@ -115,7 +115,6 @@ const About = (): JSX.Element => {
                 }}
                 animate={isOpen ? 'open' : 'close'}
                 onClick={() => setIsOpen(!isOpen)}
-                style={{ zIndex: isOpen ? 10 : 0 }}
                 ref={cardRef}
               >
                 <Item as="ul">{facts}</Item>
