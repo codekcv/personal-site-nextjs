@@ -31,9 +31,6 @@ const About = (): JSX.Element => {
 
   useEffect(() => {
     if (isOpen && window) {
-      const titlePosY = titleRef?.current?.getBoundingClientRect().y ?? 0
-      setTitleY(titlePosY - (window.innerHeight / 2 - 60))
-
       document.body.style.height = '100%'
       document.body.style.overflowY = 'hidden'
     } else {
@@ -41,6 +38,15 @@ const About = (): JSX.Element => {
       document.body.style.overflowY = 'initial'
     }
   }, [isOpen])
+
+  const handleOpen = () => {
+    if (!isOpen) {
+      const titlePosY = titleRef?.current?.getBoundingClientRect().y ?? 0
+      setTitleY(titlePosY - (window.innerHeight / 2 - 60))
+    }
+
+    setIsOpen(!isOpen)
+  }
 
   const posY = (posRef?.current?.getBoundingClientRect().y ?? 0) + 32
   const transform = `translate(-128px, calc(${posY * -1}px))`
@@ -122,7 +128,7 @@ const About = (): JSX.Element => {
                   }
                 }}
                 animate={isOpen ? 'open' : 'close'}
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={handleOpen}
                 ref={cardRef}
               >
                 <Item as="ul">{facts}</Item>
