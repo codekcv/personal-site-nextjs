@@ -25,6 +25,7 @@ const About = (): JSX.Element => {
             fontSize="4rem"
             textAlign="center"
             mt="6rem"
+            textShadow="0 0.35rem 0px rgba(0,0,0,0.1)"
             variants={{
               out: { opacity: 0, transform: 'scale(1.4)' },
               in: { opacity: 1, transform: 'scale(1)' }
