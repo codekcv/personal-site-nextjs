@@ -28,15 +28,8 @@ const About = (): JSX.Element => {
   }, [])
 
   const posX = posRef?.current?.getBoundingClientRect().x ?? 0
-  let posY = posRef?.current?.getBoundingClientRect().y ?? 0
-  let transform
-
-  if (posY > 0) {
-    transform = `translate(calc(-${posX}px + 10vw), calc(-${posY}px))`
-  } else {
-    posY *= -1
-    transform = `translate(calc(-${posX}px + 10vw), calc(${posY}px))`
-  }
+  const posY = posRef?.current?.getBoundingClientRect().y ?? 0
+  const transform = `translate(calc(-${posX}px + 10vw), ${posY * -1}px)`
 
   useEffect(() => {
     if (isOpen && window) {
@@ -57,7 +50,7 @@ const About = (): JSX.Element => {
               variants={{
                 close: {},
                 open: {
-                  transform: `translateY(calc(-${posY}px))`
+                  transform: `translateY(${posY * -1}px)`
                 }
               }}
               transition={{ duration: 0.4 }}
