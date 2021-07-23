@@ -6,12 +6,9 @@ import { motion } from 'framer-motion'
 import { InView } from 'react-intersection-observer'
 
 import { animDelay, animDuration } from '../Home.util'
-import {
-  backEndTechnologies,
-  frontEndTechnologies
-} from './TechnologyStack.util'
+import { backEndTechnologies, frontEndTechnologies } from './Stack.util'
 
-const TechnologyStack = (): JSX.Element => {
+const Stack = (): JSX.Element => {
   return (
     <Box width={[1]} mt="10vh">
       <InView threshold={0.5} delay={animDelay} triggerOnce>
@@ -85,4 +82,4 @@ const TechnologyStack = (): JSX.Element => {
   )
 }
 
-export default TechnologyStack
+export default Stack
