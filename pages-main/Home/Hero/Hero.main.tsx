@@ -50,7 +50,11 @@ const Hero = (): JSX.Element => {
             />
           </ImageContainer>
 
-          <Text as="h1" fontSize={64}>
+          <Text
+            as="h1"
+            fontSize={64}
+            textShadow="0 0.35rem 0px rgba(0,0,0,0.1)"
+          >
             Christian Villamin
           </Text>
 
