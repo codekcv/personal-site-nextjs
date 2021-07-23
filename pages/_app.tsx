@@ -7,6 +7,7 @@ import { compose, layout, LayoutProps, space, SpaceProps } from 'styled-system'
 
 const GlobalStyle = createGlobalStyle`
   * {
+    position: relative;
     padding: 0;
     margin: 0;
     box-sizing: border-box;

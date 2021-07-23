@@ -4,34 +4,11 @@ import Box from 'components/general/Box/Box.main'
 import Item from 'components/general/Item/Item.main'
 import Text from 'components/general/Text/Text.main'
 import { motion } from 'framer-motion'
-import { useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 
 import { animDelay, animDuration, triggerOnce } from '../Home.util'
-
-const facts = [
-  'My name is Christian Villamin; I live in Manila, Philippines.',
-  <>
-    I&apos;m currently working at&nbsp;
-    <a href="https://localhost/" target="_blank" rel="noopener noreferrer">
-      ____________
-    </a>{' '}
-    as a software engineer.
-  </>,
-  <>
-    I&apos;m a core member of&nbsp;
-    <a href="https://reactjs.org.ph/" target="_blank" rel="noopener noreferrer">
-      ReactJS Philippines.
-    </a>
-  </>,
-  "I'm a self-taught programmer since age 10.",
-  'I love learning, JavaScript, and open-source.',
-  'I love mentoring aspiring web developers.'
-].map((item, idx) => (
-  <Item key={idx} ml="2rem" style={{ listStyle: 'initial' }}>
-    {item}
-  </Item>
-))
+import { facts } from './About.util'
 
 const About = (): JSX.Element => {
   const posRef = useRef<HTMLDivElement>(null)
@@ -44,15 +21,34 @@ const About = (): JSX.Element => {
     triggerOnce
   })
 
-  useLayoutEffect(() => {
+  useEffect(() => {
+    if (isOpen && posRef?.current) {
+      console.log('y:', posRef.current.getBoundingClientRect().y)
+    }
+  }, [isOpen])
+
+  useEffect(() => {
     if (posRef?.current) {
-      console.log(posRef.current.getBoundingClientRect().x)
+      console.log(posRef.current.getBoundingClientRect().y, 'y')
     }
 
     if (cardRef?.current) {
       setHeight(cardRef?.current?.getBoundingClientRect().height)
     }
   }, [])
+
+  const posX = posRef?.current?.getBoundingClientRect().x ?? 0
+  let posY = posRef?.current?.getBoundingClientRect().y ?? 0
+  let transform
+
+  if (posY > 0) {
+    transform = `translate(calc(-${posX}px + 10vw)
+  , calc(-${posY}px))`
+  } else {
+    posY *= -1
+    transform = `translate(calc(-${posX}px + 10vw)
+  , calc(${posY}px))`
+  }
 
   return (
     <Box mt="10vh" ref={ref}>
@@ -110,11 +106,9 @@ const About = (): JSX.Element => {
                 variants={{
                   close: {},
                   open: {
-                    transform: `translateX(calc(-${
-                      posRef?.current?.getBoundingClientRect().x ?? 0
-                    }px + 10vw))`,
+                    transform,
                     width: '80vw',
-                    height: '80vh'
+                    height: 'calc(100vh - 85px)'
                   }
                 }}
                 animate={isOpen ? 'open' : 'close'}
