@@ -22,18 +22,8 @@ const About = (): JSX.Element => {
   })
 
   useEffect(() => {
-    if (isOpen && posRef?.current) {
-      console.log('y:', posRef.current.getBoundingClientRect().y)
-    }
-  }, [isOpen])
-
-  useEffect(() => {
-    if (posRef?.current) {
-      console.log(posRef.current.getBoundingClientRect().y, 'y')
-    }
-
     if (cardRef?.current) {
-      setHeight(cardRef?.current?.getBoundingClientRect().height)
+      setHeight(cardRef.current.getBoundingClientRect().height)
     }
   }, [])
 
@@ -42,38 +32,57 @@ const About = (): JSX.Element => {
   let transform
 
   if (posY > 0) {
-    transform = `translate(calc(-${posX}px + 10vw)
-  , calc(-${posY}px))`
+    transform = `translate(calc(-${posX}px + 10vw), calc(-${posY}px))`
   } else {
     posY *= -1
-    transform = `translate(calc(-${posX}px + 10vw)
-  , calc(${posY}px))`
+    transform = `translate(calc(-${posX}px + 10vw), calc(${posY}px))`
   }
+
+  useEffect(() => {
+    if (isOpen && window) {
+      document.body.style.height = '100%'
+      document.body.style.overflowY = 'hidden'
+    } else {
+      document.body.style.height = 'initial'
+      document.body.style.overflowY = 'initial'
+    }
+  }, [isOpen])
 
   return (
     <Box mt="10vh" ref={ref}>
       <div ref={posRef}>
         <div style={{ position: 'relative', zIndex: 1 }}>
           <Bobble>
-            <Text
-              as={motion.h1}
-              fontSize="4rem"
-              textAlign="center"
-              mt="6rem"
-              textShadow="0 0.35rem 0px rgba(0,0,0,0.1)"
+            <motion.div
               variants={{
-                out: {
-                  opacity: 0,
-                  transform: 'scale(1.5) translateY(6rem)'
-                },
-                in: { opacity: 1, transform: 'scale(1) translateY(0rem)' }
+                close: {},
+                open: {
+                  transform: `translateY(calc(-${posY}px))`
+                }
               }}
-              initial="out"
-              animate={inView ? 'in' : 'out'}
-              transition={{ duration: animDuration, ease: 'easeOut' }}
+              transition={{ duration: 0.4 }}
+              animate={isOpen ? 'open' : 'close'}
             >
-              About
-            </Text>
+              <Text
+                as={motion.h1}
+                fontSize="4rem"
+                textAlign="center"
+                mt="6rem"
+                textShadow="0 0.35rem 0px rgba(0,0,0,0.1)"
+                variants={{
+                  out: {
+                    opacity: 0,
+                    transform: 'scale(1.5) translateY(6rem)'
+                  },
+                  in: { opacity: 1, transform: 'scale(1) translateY(0rem)' }
+                }}
+                initial="out"
+                animate={inView ? 'in' : 'out'}
+                transition={{ duration: animDuration, ease: 'easeOut' }}
+              >
+                About
+              </Text>
+            </motion.div>
           </Bobble>
         </div>
 
@@ -98,7 +107,7 @@ const About = (): JSX.Element => {
               whileHover={{
                 transform: `translateY(${isOpen ? '0' : '-0.5'}rem)`
               }}
-              style={{ height }}
+              style={{ height, zIndex: isOpen ? 10 : 0 }}
             >
               <Card
                 width="100%"
@@ -113,7 +122,7 @@ const About = (): JSX.Element => {
                 }}
                 animate={isOpen ? 'open' : 'close'}
                 onClick={() => setIsOpen(!isOpen)}
-                style={{ position: 'absolute' }}
+                style={{ zIndex: isOpen ? 10 : 0 }}
                 ref={cardRef}
               >
                 <Item as="ul">{facts}</Item>
