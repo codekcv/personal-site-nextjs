@@ -4,7 +4,7 @@ import Text from 'components/general/Text/Text.main'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import profileImage from 'public/images/christian_villamin.jpg'
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FaAngleDoubleDown } from 'react-icons/fa'
 import { InView } from 'react-intersection-observer'
 
@@ -14,18 +14,18 @@ import { ImageContainer } from './Hero.util'
 const Hero = (): JSX.Element => {
   const [isScrolled, setIsScrolled] = useState(false)
 
-  const handleScroll = useCallback(() => {
-    if (isScrolled && window.scrollY === 0) setIsScrolled(false)
-    else if (!isScrolled && window.scrollY !== 0) setIsScrolled(true)
-  }, [isScrolled])
-
   useEffect(() => {
+    const handleScroll = () => {
+      if (isScrolled && window.scrollY === 0) setIsScrolled(false)
+      else if (!isScrolled && window.scrollY !== 0) setIsScrolled(true)
+    }
+
     window.addEventListener('scroll', handleScroll)
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
-  }, [handleScroll, isScrolled])
+  }, [isScrolled])
 
   return (
     <Flex flexDirection="column" alignItems="center">
