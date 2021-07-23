@@ -1,7 +1,8 @@
 import Head from 'next/head'
 
-import Hero from './Hero/Hero.main'
-import TechnologyStack from './TechnologyStack/TechnologyStack.main'
+import About from './About'
+import Hero from './Hero'
+import TechnologyStack from './TechnologyStack'
 
 const Home = (): JSX.Element => (
   <>
@@ -16,6 +17,7 @@ const Home = (): JSX.Element => (
     </Head>
 
     <Hero />
+    <About />
     <TechnologyStack />
   </>
 )

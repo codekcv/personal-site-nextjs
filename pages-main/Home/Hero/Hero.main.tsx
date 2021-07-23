@@ -4,14 +4,31 @@ import Text from 'components/general/Text/Text.main'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import profileImage from 'public/images/christian_villamin.jpg'
+import { useCallback, useEffect, useState } from 'react'
 import { FaAngleDoubleDown } from 'react-icons/fa'
 import { InView } from 'react-intersection-observer'
 
+import { animDuration } from '../TechnologyStack/TechnologyStack.util'
 import { ImageContainer } from './Hero.util'
 
 const Hero = (): JSX.Element => {
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  const handleScroll = useCallback(() => {
+    if (isScrolled && window.scrollY === 0) setIsScrolled(false)
+    else if (!isScrolled && window.scrollY !== 0) setIsScrolled(true)
+  }, [isScrolled])
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [handleScroll, isScrolled])
+
   return (
-    <Flex flexDirection="column" alignItems="center" mb="100vh">
+    <Flex flexDirection="column" alignItems="center">
       <Flex
         as={motion.div}
         justifyContent="center"
@@ -19,7 +36,7 @@ const Hero = (): JSX.Element => {
         height="calc(100vh - 85px - 48px - 2rem)"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
+        transition={{ duration: animDuration }}
       >
         <Flex flexDirection="column" alignItems="center">
           <ImageContainer>
@@ -45,26 +62,36 @@ const Hero = (): JSX.Element => {
 
       <InView>
         {({ inView, ref }) => (
-          <Box
-            as={motion.div}
-            height={48}
-            ref={ref}
+          <motion.div
             variants={{
               out: { opacity: 0 },
               in: {
-                opacity: 1,
+                opacity: 1
+              }
+            }}
+            initial="out"
+            animate={inView && !isScrolled ? 'in' : 'out'}
+            transition={{ duration: animDuration }}
+          >
+            <Box
+              as={motion.div}
+              height={48}
+              ref={ref}
+              animate={{
                 transform: [
                   'translateY(-1rem)',
                   'translateY(0rem)',
                   'translateY(-1rem)'
                 ]
-              }
-            }}
-            animate={inView ? 'in' : 'out'}
-            transition={{ repeat: Infinity, duration: 3 }}
-          >
-            <FaAngleDoubleDown size={48} />
-          </Box>
+              }}
+              transition={{
+                repeat: Infinity,
+                duration: 3
+              }}
+            >
+              <FaAngleDoubleDown size={48} />
+            </Box>
+          </motion.div>
         )}
       </InView>
     </Flex>
