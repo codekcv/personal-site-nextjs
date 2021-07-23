@@ -73,7 +73,7 @@ const Hero = (): JSX.Element => {
         {({ inView, ref }) => (
           <motion.div
             variants={{
-              out: { opacity: 0 },
+              out: { opacity: 0.15 },
               in: {
                 opacity: 1
               }
